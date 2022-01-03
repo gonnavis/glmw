@@ -5,12 +5,12 @@
 export default function(module, memory) {
   // @str
   module.str = function(address) {
-    let view = memory.F32.subarray(address >> 2, (address >> 2) + 4);
+    let view = memory.F64.subarray(address >> 2, (address >> 2) + 4);
     return `vec4(${ view[0] }, ${ view[1] }, ${ view[2] }, ${ view[3] })`;
   };
   // @view
   module.view = function(address) {
-    let view = memory.F32.subarray(address >> 2, (address >> 2) + 4);
+    let view = memory.F64.subarray(address >> 2, (address >> 2) + 4);
     //view.address = address;
     return view;
   };

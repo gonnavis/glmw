@@ -17,7 +17,7 @@ export float *mat4(free)(float *a) {
  *
  * @returns {mat4} a new 4x4 matrix
  */
-export float *mat4(create)() {
+export float *mat4(create)() { // mark
   float *out = malloc(MAT_SIZE_4 * sizeof(*out));
   out[0] = 1;
   out[1] = 0;
@@ -373,7 +373,7 @@ export float mat4(determinant)(float *a) {
  * @param {mat4} b the second operand
  * @returns {mat4} out
  */
-export float *mat4(multiply)(float *out, float *a,  float *b) {
+export float *mat4(multiply)(float *out, float *a,  float *b) { // mark
 
   out[0] = b[0]*a[0] + b[1]*a[4] + b[2]*a[8] + b[3]*a[12];
   out[1] = b[0]*a[1] + b[1]*a[5] + b[2]*a[9] + b[3]*a[13];
