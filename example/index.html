@@ -4,32 +4,37 @@
 <script>
   glMatrix.setMatrixArrayType(Array)
   glmw.init().then(instance => {
-    init();
+    setInterval(() => {
+      init();
+    }, 1000);
   });
   function init() {
-    // glmw
-    {
-      let ns = glmw.mat4;
-      let a = ns.create();
-      let b = ns.create();
-      let now = performance.now();
-      for (let ii = 0; ii < 1000; ++ii) {
-        ns.multiply(a, a, b);
-      };
-      let then = performance.now();
-      console.log("WebAssembly:", then - now, "ms", ns.view(a));
-    }
     // gl-matrix
     {
       let ns = mat4;
       let a = ns.create();
       let b = ns.create();
+      let c = ns.create();
       let now = performance.now();
-      for (let ii = 0; ii < 1000; ++ii) {
-        ns.multiply(a, a, b);
+      for (let ii = 0; ii < 100000; ++ii) {
+        ns.multiply(c, a, b);
       };
       let then = performance.now();
       console.log("JavaScript:", then - now, "ms", a);
     }
+    // glmw
+    {
+      let ns = glmw.mat4;
+      let a = ns.create();
+      let b = ns.create();
+      let c = ns.create();
+      let now = performance.now();
+      for (let ii = 0; ii < 100000; ++ii) {
+        ns.multiply(c, a, b);
+      };
+      let then = performance.now();
+      console.log("WebAssembly:", then - now, "ms", ns.view(a));
+    }
+    console.log('-----')
   };
 </script>
